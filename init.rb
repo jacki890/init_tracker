@@ -1,14 +1,6 @@
 # Purpose is to track initiative in a D&D game.
 # Input PC's, NPC's and their initiative rolls, output order.
 
-puts 'Type a character or monster name and hit Enter'
+pc_marching_order = { 6 => "Flaetcher", 4=> "Illyria", 5 => "Maynai", 2 => "Sybok", 1 => "Stumpy", 3 => "Barnabayus" }
 
-character = gets.chomp
-init_array = []
-
-while character != ''
-  init_array.push character
-  character = gets.chomp
-end
-
-puts init_array.sort
+puts pc_marching_order.sort
