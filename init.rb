@@ -1,6 +1,16 @@
-# Purpose is to track initiative in a D&D game.
-# Input PC's, NPC's and their initiative rolls, output order.
+def make_character(char)
+  char
+end
 
-pc_marching_order = { 6 => "Flaetcher", 4=> "Illyria", 5 => "Maynai", 2 => "Sybok", 1 => "Stumpy", 3 => "Barnabayus" }
+characters = File.open("/Users/jackikeys/Dropbox/apprentice_work/init_tracker/player_characters.txt", "r")
+each_pc = characters.readlines
+characters.close
 
-puts pc_marching_order.sort
+after_init = File.open("/Users/jackikeys/Dropbox/apprentice_work/init_tracker/in_order.txt", "w")
+
+each_pc.each do |line|
+  chars = make_character(line)
+  after_init.write(chars)
+end
+
+after_init.close
