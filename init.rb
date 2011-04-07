@@ -2,11 +2,11 @@ def make_character(char)
   char
 end
 
-characters = File.open("/Users/jackikeys/Dropbox/apprentice_work/init_tracker/player_characters.txt", "r")
+characters = File.open(File.join(File.dirname(__FILE__), "player_characters.txt"), "r")
 each_pc = characters.readlines
 characters.close
 
-after_init = File.open("/Users/jackikeys/Dropbox/apprentice_work/init_tracker/in_order.txt", "w")
+after_init = File.open(File.join(File.dirname(__FILE__), "order.txt"), "w")
 
 each_pc.each do |line|
   chars = make_character(line)
