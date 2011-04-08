@@ -1,16 +1,4 @@
-def make_character(char)
-  char
-end
+require 'init_tracker'
 
-characters = File.open('./player_characters.txt', "r")
-each_pc = characters.readlines
-characters.close
-
-after_init = File.open('./order.txt', "w")
-
-each_pc.each do |line|
-  chars = make_character(line)
-  after_init.write(chars)
-end
-
-after_init.close
+it = InitTracker.new
+it.write_file
