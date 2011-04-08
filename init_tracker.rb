@@ -1,25 +1,26 @@
+require 'character'
+
 class InitTracker
 
-  def make_character(char)
-    char
+  def initialize
+    @characters = File.new('./player_characters.txt', "r").readlines.collect do |character|
+      Character.new(character.chomp)
+    # lines = @characters.collect do |chars|
+    #   "#{dice_roll} #{chars}\\n"
+    # end.sort
+
+    end.sort.reverse
   end
 
-  def dice_roll(sides = 6)
-    rand(sides) + 1
-  end
+  # def dice_roll(sides = 6)
+  #   rand(sides) + 1
+  # end
 
   def write_file
-    characters = File.open('./player_characters.txt', "r")
-    each_pc = characters.readlines
-    characters.close
-
-    after_init = File.open('./order.txt', "w")
-
-    each_pc.each do |line|
-      chars = make_character(line)
-      after_init.write("#{dice_roll} #{chars}")
+    File.open('./order.txt', "w") do |init_file|
+      @characters.each do |character|
+        init_file.write("#{character.padded_roll} #{character.name}\n")
+      end
     end
-
-    after_init.close
   end
 end
