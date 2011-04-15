@@ -6,7 +6,8 @@ class Character
   end
 
   def input_dice_roll
-    puts "Please type in the result of the d10 dice roll (number from 1 - 10)"
+    puts "Please enter the d10 dice roll (number from 1 - 10)"
+    puts "for " << @name
     dice_input = gets.chomp.to_i
     while dice_input < 1 || dice_input > 10
       puts "Please type a number between 1 and 10"
