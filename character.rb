@@ -8,12 +8,16 @@ class Character
   def input_dice_roll
     puts "Please enter the d10 dice roll (number from 1 - 10)"
     puts "for " << @name
-    dice_input = gets.chomp.to_i
-    while dice_input < 1 || dice_input > 10
-      puts "Please type a number between 1 and 10"
-      dice_input = gets.chomp.to_i
+    dice_input = gets.chomp
+    while dice_input.to_i < 1 || dice_input.to_i > 10
+      if dice_input.empty?
+        dice_input = rand(10) + 1
+      else
+        puts "Please type a number between 1 and 10"
+        dice_input = gets.chomp
+      end
     end
-    dice_input
+    dice_input.to_i
   end
 
   def <=>(o)
