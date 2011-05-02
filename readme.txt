@@ -1,4 +1,4 @@
-I want to create an initiative tracking program to use with
+This is an initiative tracking program to use with
 D&D style games. The main function is for the DM to put PC and
 NPC names into a text file, manually enter dice roll numbers
 for each character, then output the character's names depending
