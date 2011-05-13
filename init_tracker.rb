@@ -1,16 +1,16 @@
-require 'character'
+require 'player'
 
 class InitTracker
 
   def initialize
-    @characters = File.new('./player_characters.txt', "r").readlines.collect do |character|
-      Character.new(character.chomp) end.sort.reverse
+    @players = File.new('./player_characters.txt', "r").readlines.collect do |player|
+      Player.new(:name => player.chomp) end.sort.reverse
   end
 
   def write_file
     File.open('./order.txt', "w") do |init_file|
-      @characters.each do |character|
-        init_file.write("#{character.padded_roll} #{character.name}\n")
+      @players.each do |player|
+        init_file.write("#{player.padded_roll} #{player.name}\n")
       end
     end
     puts(File.open('./order.txt', "r").readlines)

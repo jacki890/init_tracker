@@ -1,15 +1,23 @@
-class Character
+class Player
   include DataMapper::Resource
 
+  property :id, Serial
   property :name, String
-  property :uid, Serial
+  property :race, String
+  property :hp, Integer
+  property :class, String
+  property :level, Integer
+  property :gender, String
+  property :alignment, String
+  property :ac, Integer
+  property :ac_type, String
 
   attr_accessor :roll
 
-  # def initialize(name)
-  #   self.name = name
-  #   self.roll = input_dice_roll
-  # end
+  def initialize(*args)
+    super
+    input_dice_roll
+  end
 
   def input_dice_roll
     puts "Please enter the d10 dice roll (number from 1 - 10)"
