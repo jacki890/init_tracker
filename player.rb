@@ -20,14 +20,14 @@ class Player
   end
 
   def input_dice_roll
-    puts "Please enter the d10 dice roll (number from 1 - 10)"
+    puts "Please enter the dice roll plus any bonuses"
     puts "for " << name
     dice_input = gets.chomp
-    while dice_input.to_i < 1 || dice_input.to_i > 10
+    while dice_input.to_i < 1 || dice_input.to_i > 40
       if dice_input.empty?
-        dice_input = rand(10) + 1
+        dice_input = rand(20) + 1
       else
-        puts "Please type a number between 1 and 10"
+        puts "Please type a number and hit Return"
         dice_input = gets.chomp
       end
     end
