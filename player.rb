@@ -25,7 +25,7 @@ class Player
     dice_input = gets.chomp
     while dice_input.to_i < 1 || dice_input.to_i > 40
       if dice_input.empty?
-        dice_input = rand(20) + 1
+        dice_input = rand(10) + 1
       else
         puts "Please type a number and hit Return"
         dice_input = gets.chomp
