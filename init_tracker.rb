@@ -3,8 +3,16 @@ require 'player'
 class InitTracker
 
   def initialize
-    @players = File.new('./player_characters.txt', "r").readlines.collect do |player|
-      Player.new(:name => player.chomp) end.sort
+    # @players = File.new('./player_characters.txt', "r").readlines.collect do |player|
+    @players = Player.all # (:order => [:name])
+      # Player.new(:name => player.chomp) end.sort
+  end
+
+  def dice
+    @players.each do |player|
+      player.input_dice_roll
+    end
+    @players.sort
   end
 
   def write_file
