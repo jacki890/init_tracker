@@ -1,6 +1,8 @@
 class Player
   include DataMapper::Resource
 
+  INPUT_FIELDS = %w{name race hp class level gender alignment ac ac_type}
+
   property :id, Serial
   property :name, String
   property :race, String
@@ -15,16 +17,13 @@ class Player
   attr_accessor :roll
 
   def self.enter_player
-    fields = %w{name race hp class level gender alignment ac ac_type}
-
     puts "Please enter the attributes"
     player = Player.new
 
-    fields.each do |a|
-      puts "#{a.capitalize}: "
-      player.send("#{a}=", gets.chomp)
+    INPUT_FIELDS.each do |attr|
+      puts "#{attr.capitalize}: "
+      player.send("#{attr}=", gets.chomp)
     end
-
     player.save!
   end
 

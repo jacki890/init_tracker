@@ -19,7 +19,12 @@ class InitTracker
         init_file.write("#{player.padded_roll} #{player.name}\n")
       end
     end
-    puts "\e[H\e[2J"
+    clear_screen
     puts(File.open('./order.txt', "r").readlines)
+  end
+
+  private
+  def clear_screen
+    puts "\e[H\e[2J"
   end
 end
