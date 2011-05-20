@@ -16,7 +16,19 @@ class Player
 
   def initialize(*args)
     super
-    input_dice_roll
+  end
+
+  def self.enter_player
+    puts "Please enter the attributes"
+    player = Player.new
+
+    puts "Name: "
+    player.name = gets.chomp
+
+    puts "Race: "
+    player.race = gets.chomp
+
+    player.save!
   end
 
   def input_dice_roll

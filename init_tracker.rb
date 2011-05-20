@@ -6,11 +6,11 @@ class InitTracker
     @players = Player.all
   end
 
-  def dice
+  def dice_input_and_sort
     @players.each do |player|
       player.input_dice_roll
     end
-    @players.sort
+    @players.sort!
   end
 
   def write_file
