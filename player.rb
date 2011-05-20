@@ -14,21 +14,22 @@ class Player
 
   attr_accessor :roll
 
-  def initialize(*args)
-    super
-  end
-
   def self.enter_player
+    fields = %w{name race hp class level gender alignment ac ac_type}
+
     puts "Please enter the attributes"
     player = Player.new
 
-    puts "Name: "
-    player.name = gets.chomp
-
-    puts "Race: "
-    player.race = gets.chomp
+    fields.each do |a|
+      puts "#{a.capitalize}: "
+      player.send("#{a}=", gets.chomp)
+    end
 
     player.save!
+  end
+
+  def initialize(*args)
+    super
   end
 
   def input_dice_roll
