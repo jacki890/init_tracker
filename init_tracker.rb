@@ -1,4 +1,6 @@
 require 'player'
+require 'encounter'
+require 'encounter_player'
 
 class InitTracker
 
