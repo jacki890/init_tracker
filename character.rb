@@ -1,4 +1,4 @@
-class Player
+class Character
   include DataMapper::Resource
 
   # INPUT_FIELDS = %w{name race hp class level gender alignment ac ac_type}
@@ -19,27 +19,26 @@ class Player
   property :active, Integer
 
   has n, :encounters
-  has n, :encounters, :through => :encounter_player
 
   attr_accessor :roll
 
-  def self.enter_player
+  def self.enter_character
     puts "Please enter the attributes"
-    player = Player.new
+    character = Character.new
 
     INPUT_FIELDS.each do |attr|
       puts "#{attr.capitalize}: "
-      player.send("#{attr}=", gets.chomp)
+      character.send("#{attr}=", gets.chomp)
     end
 
     BOOLEAN_FIELDS.each do |attr|
-      puts "If player is #{attr.upcase} enter \"yes\""
+      puts "If character is #{attr.upcase} enter \"yes\""
       answer = gets.chomp
       flag = (answer.downcase == "yes") ? 1 : 0
-      player.send("#{attr}=", flag)
+      character.send("#{attr}=", flag)
     end
 
-    player.save!
+    character.save!
   end
 
   def initialize(*args)
@@ -76,5 +75,4 @@ class Player
   def to_s
     name
   end
-
 end

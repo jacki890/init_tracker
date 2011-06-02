@@ -1,11 +1,11 @@
-class EncounterPlayer
+class EncounterCharacter
   include DataMapper::Resource
 
   property :id, Serial
   property :encounter_id, Integer
-  property :player_id, Integer
+  property :character_id, Integer
 
   belongs_to :encounter
-  belongs_to :player
+  belongs_to :character
 
 end

@@ -6,12 +6,11 @@ class Encounter
   property :description, String
   property :campaign_id, Integer
 
-  has n, :encounter_players
-  has n, :players, :through => :encounter_player
-  has n, :encounters, :through => :encounter_player
+  has n, :encounter_characters
+  has n, :characters, :through => :encounter_characters
+  has n, :encounters, :through => :encounter_characters
 
-  def active_players
-    players.select{|player| player.active?}
+  def active_characters
+    characters.select{|character| character.active?}
   end
-
 end

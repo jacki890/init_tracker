@@ -1,6 +1,6 @@
-require 'player'
+require 'character'
 require 'encounter'
-require 'encounter_player'
+require 'encounter_character'
 
 class InitTracker
 
@@ -10,17 +10,17 @@ class InitTracker
   end
 
   def dice_input_and_sort
-    @players = @current_encounter.active_players
-    @players.each do |player|
-      player.input_dice_roll
+    @characters = @current_encounter.active_characters
+    @characters.each do |character|
+      character.input_dice_roll
     end
-    @players.sort!
+    @characters.sort!
   end
 
   def write_file
     File.open('./order.txt', "w") do |init_file|
-      @players.each do |player|
-        init_file.write("#{player.padded_roll} #{player.name}\n")
+      @characters.each do |character|
+        init_file.write("#{character.padded_roll} #{character.name}\n")
       end
     end
     clear_screen
