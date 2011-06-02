@@ -5,10 +5,12 @@ require 'encounter_player'
 class InitTracker
 
   def initialize
-    @players = Player.all
+    clear_screen
+    @current_encounter = Encounter.last
   end
 
   def dice_input_and_sort
+    @players = @current_encounter.active_players
     @players.each do |player|
       player.input_dice_roll
     end

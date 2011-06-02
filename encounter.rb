@@ -8,9 +8,10 @@ class Encounter
 
   has n, :encounter_players
   has n, :players, :through => :encounter_player
+  has n, :encounters, :through => :encounter_player
 
   def active_players
-    players.select{|p| p.active == 1}
+    players.select{|player| player.active?}
   end
 
 end
