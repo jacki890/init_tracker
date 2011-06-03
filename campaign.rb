@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'data_mapper'
+require 'setup'
+
 class Campaign
   include DataMapper::Resource
 
@@ -5,4 +9,7 @@ class Campaign
   property :name, String
   property :description, String
 
+  def to_s
+    name
+  end
 end

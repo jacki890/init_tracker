@@ -1,12 +1,19 @@
 require 'character'
 require 'encounter'
 require 'encounter_character'
+require 'campaign'
 
 class InitTracker
 
   def initialize
     clear_screen
     @current_encounter = Encounter.last
+  end
+
+  def choose_campaign
+    puts "Type your ID for the current campaign."
+    choose_campaign = Campaign.all
+    puts choose_campaign
   end
 
   def dice_input_and_sort
