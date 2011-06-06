@@ -12,8 +12,9 @@ class InitTracker
 
   def choose_campaign
     puts "Type your ID for the current campaign."
-    choose_campaign = Campaign.all
-    puts choose_campaign
+    list_campaign = Campaign.all
+    puts list_campaign
+
   end
 
   def dice_input_and_sort
