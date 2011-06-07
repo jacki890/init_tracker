@@ -10,6 +10,6 @@ class Campaign
   property :description, String
 
   def to_s
-    name
+    "#{id} #{name}"
   end
 end

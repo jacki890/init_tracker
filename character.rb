@@ -20,7 +20,7 @@ class Character
 
   has n, :encounters
 
-  attr_accessor :roll
+  attr_accessor :roll, :action
 
   def self.enter_character
     puts "Please enter the attributes"
@@ -62,6 +62,12 @@ class Character
       end
     end
    self.roll = dice_input.to_i
+  end
+  
+  def input_action_for_round
+    puts "Now enter the action for this round."
+    puts "for " << name
+    self.action = gets.chomp
   end
 
   def <=>(o)

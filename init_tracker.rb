@@ -15,12 +15,16 @@ class InitTracker
     list_campaign = Campaign.all
     puts list_campaign
 
+    current_campaign = gets.chomp
+    @current_campaign = Campaign.get(current_campaign)
+    puts @current_campaign
   end
 
   def dice_input_and_sort
     @characters = @current_encounter.active_characters
     @characters.each do |character|
       character.input_dice_roll
+      character.input_action_for_round
     end
     @characters.sort!
   end
@@ -28,7 +32,7 @@ class InitTracker
   def write_file
     File.open('./order.txt', "w") do |init_file|
       @characters.each do |character|
-        init_file.write("#{character.padded_roll} #{character.name}\n")
+        init_file.write("#{character.padded_roll} #{character.name} - #{character.action}\n")
       end
     end
     clear_screen
@@ -37,6 +41,6 @@ class InitTracker
 
   private
   def clear_screen
-    puts "\e[H\e[2J"
+    puts `clear`
   end
 end
