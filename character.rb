@@ -18,9 +18,10 @@ class Character
   property :npc, Integer
   property :active, Integer
 
-  has n, :encounters
+  # has n, :encounters
+  has n, :encounter_characters, :child_key => [ :character_id ]
 
-  attr_accessor :roll, :action
+  attr_accessor :roll, :action, :id
 
   def self.enter_character
     puts "Please enter the attributes"
@@ -37,8 +38,11 @@ class Character
       flag = (answer.downcase == "yes") ? 1 : 0
       character.send("#{attr}=", flag)
     end
-
     character.save!
+  end
+
+  def self.to_encounter
+    EncounterCharacter.new(54, 2)
   end
 
   def initialize(*args)
@@ -63,7 +67,7 @@ class Character
     end
    self.roll = dice_input.to_i
   end
-  
+
   def input_action_for_round
     puts "Now enter the action for this round."
     puts "for " << name

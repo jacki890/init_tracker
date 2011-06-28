@@ -7,7 +7,7 @@ class Encounter
   property :campaign_id, Integer
 
   has n, :encounter_characters
-  has n, :characters, :through => :encounter_characters
+  has n, :encounter_characters, :child_key => [ :encounter_id ]
   has n, :encounters, :through => :encounter_characters
 
   def active_characters
