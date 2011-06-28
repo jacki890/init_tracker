@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'data_mapper'
+
 class Character
   include DataMapper::Resource
 
@@ -7,19 +10,20 @@ class Character
 
   property :id, Serial
   property :name, String
-  property :race, String
-  property :hp, Integer
-  property :class, String
-  property :level, Integer
-  property :gender, String
-  property :alignment, String
-  property :ac, Integer
-  property :ac_type, String
   property :npc, Integer
   property :active, Integer
+  #has n, :encounter_characters, :child_key => [ :character_id ]
+
+  # property :race, String
+  # property :hp, Integer
+  # property :class, String
+  # property :level, Integer
+  # property :gender, String
+  # property :alignment, String
+  # property :ac, Integer
+  # property :ac_type, String
 
   # has n, :encounters
-  has n, :encounter_characters, :child_key => [ :character_id ]
 
   attr_accessor :roll, :action, :id
 
@@ -45,21 +49,25 @@ class Character
     EncounterCharacter.new(54, 2)
   end
 
-  def initialize(*args)
-    super
-  end
-
   def active?
     active == 1
+  end
+
+  def roll_dice
+    rand(10) + 1
+  end
+
+  def valid_roll?(roll)
+    roll.to_i > 0 and roll.to_i < 11
   end
 
   def input_dice_roll
     puts "Please enter the dice roll plus any bonuses"
     puts "for " << name
     dice_input = gets.chomp
-    while dice_input.to_i < 1 || dice_input.to_i > 40
+    while not valid_roll?(dice_input)
       if dice_input.empty?
-        dice_input = rand(10) + 1
+        dice_input = roll_dice
       else
         puts "Please type a number and hit Return"
         dice_input = gets.chomp
