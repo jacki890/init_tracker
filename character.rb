@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'data_mapper'
+require 'encounter_character'
 
 class Character
   include DataMapper::Resource
@@ -12,7 +13,8 @@ class Character
   property :name, String
   property :npc, Integer
   property :active, Integer
-  #has n, :encounter_characters, :child_key => [ :character_id ]
+  has n, :encounter_characters
+  has n, :encounter, :through => :encounter_characters
 
   # property :race, String
   # property :hp, Integer

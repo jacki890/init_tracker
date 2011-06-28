@@ -15,15 +15,15 @@ end
 class CharacterTests < Test::Unit::TestCase
   def setup
     DataMapper.setup(:default, 'postgres://localhost/dnd')
-    DataMapper.auto_migrate!
     @char = Character.new({ :name => "Bob",
                   :npc => 1,
                   :active => 1 })
   end
 
   def test_character_gets_saved
+    old_count = Character.count
     @char.save
-    assert_equal 1, Character.count
+    assert_equal old_count+1, Character.count
   end
 
   def test_roll_dice_is_random
